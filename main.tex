@@ -21,9 +21,6 @@
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.17}
 
-% Red color theme
-\setbeamercolor{headline}{bg=cardinalred,fg=white}
-
 % ====================
 % Lengths
 % ====================
@@ -99,10 +96,20 @@
   \end{block}
 
   \begin{block}{Background: Brown's Distortion Model}
-    Brown's distortion model correlates
+    The Brown's distortion model describes radial and tangential lens distortion given calibrated camera parameters using an infinite polynomial series. The radial model is given by:
+    \begin{align*}
+      x_{d,r}&= x + \bar{x} \left( k_1 r^2 + k_2 r^4 + k_3 r^6 + ... \right) \\
+      y_{d,r}&= y + \bar{y} \left( k_1 r^2 + k_2 r^4 + k_3 r^6 + ... \right) \\
+    \end{align*}
+    And the tangential model is given by:
+    \begin{align*}
+      x_{d,t}&= x + \left[p_1 (r^2 + 2 \bar{x}^2) + 2 p_2 \bar{x} \bar{y}\right] \left(1 + p_3 r^2 + p_4 r^4 + ...\right)\\
+      y_{d,t}&= y + \left[p_2 (r^2 + 2 \bar{y}^2) + 2 p_1 \bar{x} \bar{y}\right]\left(1 + p_3 r^2 + p_4 r^4 + ...\right)
+    \end{align*}
+    where $x, y$ are the undistorted coordinates, $x_{d,*}, y_{d,*}$ are the distorted coordinates, $\bar{x}, \bar{y}$ are distortion-centered coordinates, $r^2 = \bar{x}^2 + \bar{y}^2$, $k_i$ are the radial distortion parameters, and $p_i$ are the tangential distortion parameters.
   \end{block}
 
-  \begin{block}{Background: Reinforcement Learning}
+  \begin{block}{Background: Previous Approaches}
 
   \end{block}
 
@@ -116,15 +123,11 @@
 
 \begin{column}{\colwidth}
 
-  \begin{block}{A block containing an enumerated list}
+  \begin{block}{Methodology}
 
   \end{block}
 
-  \begin{block}{Fusce aliquam magna velit}
-
-  \end{block}
-
-  \begin{block}{Nam cursus consequat egestas}
+  \begin{block}{Training Flow}
 
   \end{block}
 
@@ -134,11 +137,7 @@
 
 \begin{column}{\colwidth}
 
-  \begin{block}{A block containing some math}
-
-  \end{block}
-
-  \begin{block}{Nullam vel erat at velit convallis laoreet}
+  \begin{block}{Results}
 
   \end{block}
 

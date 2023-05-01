@@ -1,4 +1,6 @@
-# Stanford LaTeX Poster Template
+# Poster for
+
+[Poster](main.pdf)
 
 ## 4 Available Colors
 
