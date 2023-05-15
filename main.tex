@@ -7,11 +7,13 @@
 % ====================
 % Packages
 % ====================
+\setlength{\paperwidth}{40in}
+\setlength{\paperheight}{30in}
 
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{anyfontsize}
-\usepackage[size=custom,width=120,height=72,scale=1.0]{beamerposter}
+\usepackage{beamerposter}
 \usetheme{gemini}
 % \usecolortheme{uchicago}
 \usecolortheme{stanford}
@@ -24,6 +26,8 @@
 % ====================
 % Lengths
 % ====================
+
+
 
 % If you have N columns, choose \sepwidth and \colwidth such that
 % (N+1)*\sepwidth + N*\colwidth = \paperwidth
@@ -49,7 +53,8 @@
 \footercontent{
   \href{https://github.com/pi314ever/mathworks-physical-sensor-model}{GitHub: pi314ever/mathworks-physical-sensor-model} \hfill
   ICME Xpo Research Symposium 2023\hfill
-  \href{mailto:dhuangpi@alumni.stanford.edu}{dhuangpi@alumni.stanford.edu}}
+  \href{mailto:dhuangpi@alumni.stanford.edu}{dhuangpi@alumni.stanford.edu}
+}
 % (can be left out to remove footer)
 
 % ====================
@@ -69,89 +74,108 @@
 % This adds the Logos on the top left and top right
 \addtobeamertemplate{headline}{}
 {
-    \begin{tikzpicture}[remember picture,overlay]
-      \node [anchor=north west, inner sep=3cm] at ([xshift=0.0cm,yshift=1.0cm]current page.north west)
-      {\includegraphics[height=4.0cm]{stanford_logos/icme_logo.png}};
-      \node [anchor=north east, inner sep=3cm] at ([xshift=0.0cm,yshift=2.5cm]current page.north east)
-      {\includegraphics[height=7.0cm]{stanford_logos/Block_S_2_color.png}};
-    \end{tikzpicture}
+  \begin{tikzpicture}[remember picture,overlay]
+    \node [anchor=north west, inner sep=3cm] at ([xshift=0.0cm,yshift=1.0cm]current page.north west)
+    {\includegraphics[height=4.0cm]{stanford_logos/icme_logo.png}};
+    \node [anchor=north east, inner sep=3cm] at ([xshift=0.0cm,yshift=2.5cm]current page.north east)
+    {\includegraphics[height=7.0cm]{stanford_logos/Block_S_2_color.png}};
+  \end{tikzpicture}
 }
 
 \begin{frame}[t]
-\begin{columns}[t]
-\separatorcolumn
+  \begin{columns}[t]
+    \separatorcolumn
 
-\begin{column}{\colwidth}
+    \begin{column}{\colwidth}
 
-  \begin{block}{Introduction}
 
-    % TODO: Fix up rough draft
-    \begin{itemize}
-      \item Motivation: What is the big scope problem?\\
-      Training self-driving cars requires a lot of data, but it is expensive/time-consuming/unsafe to collect data in real-world environments.\\
-      \item What is the specific problem?\\
-      The world data can be generated through virtual worlds (e.g. Unity, Unreal Engine), but the virtual world data needs to have accurate lens distortion properties for the specific cameras used in self-driving cars.
-    \end{itemize}
 
-  \end{block}
+      \begin{block}{Background: Brown's Distortion Model}
+        The Brown's distortion model describes radial and tangential lens distortion given calibrated camera parameters using an infinite polynomial series. The radial model is given by:
+        \begin{align*}
+          x_{d,r} & = x + \bar{x} \left( k_1 r^2 + k_2 r^4 + k_3 r^6 + ... \right) \\
+          y_{d,r} & = y + \bar{y} \left( k_1 r^2 + k_2 r^4 + k_3 r^6 + ... \right) \\
+        \end{align*}
+        And the tangential model is given by:
+        \begin{align*}
+          x_{d,t} & = x + \left[p_1 (r^2 + 2 \bar{x}^2) + 2 p_2 \bar{x} \bar{y}\right] \left(1 + p_3 r^2 + p_4 r^4 + ...\right) \\
+          y_{d,t} & = y + \left[p_2 (r^2 + 2 \bar{y}^2) + 2 p_1 \bar{x} \bar{y}\right]\left(1 + p_3 r^2 + p_4 r^4 + ...\right)
+        \end{align*}
+        where $x, y$ are the undistorted coordinates, $x_{d,*}, y_{d,*}$ are the distorted coordinates, $\bar{x}, \bar{y}$ are distortion-centered coordinates, $r^2 = \bar{x}^2 + \bar{y}^2$, $k_i$ are the radial distortion parameters, and $p_i$ are the tangential distortion parameters.
+      \end{block}
 
-  \begin{block}{Background: Brown's Distortion Model}
-    The Brown's distortion model describes radial and tangential lens distortion given calibrated camera parameters using an infinite polynomial series. The radial model is given by:
-    \begin{align*}
-      x_{d,r}&= x + \bar{x} \left( k_1 r^2 + k_2 r^4 + k_3 r^6 + ... \right) \\
-      y_{d,r}&= y + \bar{y} \left( k_1 r^2 + k_2 r^4 + k_3 r^6 + ... \right) \\
-    \end{align*}
-    And the tangential model is given by:
-    \begin{align*}
-      x_{d,t}&= x + \left[p_1 (r^2 + 2 \bar{x}^2) + 2 p_2 \bar{x} \bar{y}\right] \left(1 + p_3 r^2 + p_4 r^4 + ...\right)\\
-      y_{d,t}&= y + \left[p_2 (r^2 + 2 \bar{y}^2) + 2 p_1 \bar{x} \bar{y}\right]\left(1 + p_3 r^2 + p_4 r^4 + ...\right)
-    \end{align*}
-    where $x, y$ are the undistorted coordinates, $x_{d,*}, y_{d,*}$ are the distorted coordinates, $\bar{x}, \bar{y}$ are distortion-centered coordinates, $r^2 = \bar{x}^2 + \bar{y}^2$, $k_i$ are the radial distortion parameters, and $p_i$ are the tangential distortion parameters.
-  \end{block}
+      \begin{block}{Background: Previous Approaches}
 
-  \begin{block}{Background: Previous Approaches}
 
-  \end{block}
 
-  \begin{alertblock}{A highlighted block}
+      \end{block}
 
-  \end{alertblock}
+      \begin{alertblock}{A highlighted block}
 
-\end{column}
+      \end{alertblock}
 
-\separatorcolumn
+    \end{column}
 
-\begin{column}{\colwidth}
+    \separatorcolumn
 
-  \begin{block}{Methodology}
+    \begin{column}{\colwidth}
 
-  \end{block}
+      \begin{block}{Abstract}
 
-  \begin{block}{Training Flow}
+        The success of machine learning in recent years relies heavily on high-quality and high-quantity data. For self-driving cars, obtaining real-life data is the best option. However, it is difficult to capture rare but important events and can be costly due to manual labor and traffic disruptions. To address this issue, a simulated environment is used to train AI, where a crucial subsystem is the camera sensor model that translates raw visual data of the physical world to the signals the model “sees”. While simulated environments can generate undistorted images easily using 2D projections, distortions caused by the lens need to be post-processed to account for camera lens properties. In this study, we propose a real-time deep-learning approach for lens distortion correction using a neural network that approximates radial and tangential lens distortion. We present experimental results that can be greatly improved with refinement of model architecture and hyper-parameters.
 
-  \end{block}
+        % TODO: Fix up rough draft
+        % \begin{itemize}
+        %   \item Motivation: What is the big scope problem?\\
+        %         Training self-driving cars requires a lot of data, but it is expensive/time-consuming/unsafe to collect data in real-world environments.\\
+        %   \item What is the specific problem?\\
+        %         The world data can be generated through virtual worlds (e.g. Unity, Unreal Engine), but the virtual world data needs to have accurate lens distortion properties for the specific cameras used in self-driving cars.
+        % \end{itemize}
 
-\end{column}
+      \end{block}
 
-\separatorcolumn
+      \begin{block}{Methodology}
 
-\begin{column}{\colwidth}
+        % Algorithm design:
 
-  \begin{block}{Results}
+      \end{block}
 
-  \end{block}
+      \begin{block}{Training Flow}
 
-  \begin{block}{References}
+      \end{block}
 
-    \nocite{*}
-    \footnotesize{\bibliographystyle{plain}\bibliography{poster}}
+    \end{column}
 
-  \end{block}
+    \separatorcolumn
 
-\end{column}
+    \begin{column}{\colwidth}
 
-\separatorcolumn
-\end{columns}
+      \begin{block}{Results}
+        \begin{itemize}
+          \item Neither model is capable of creating visually-consistent distortions.
+        \end{itemize}
+
+      \end{block}
+
+      \begin{block}{Future Work}
+        % Improvements
+        \begin{itemize}
+          \item
+        \end{itemize}
+
+      \end{block}
+
+      \begin{block}{References}
+
+        \nocite{*}
+        \footnotesize{\bibliographystyle{plain}\bibliography{poster}}
+
+      \end{block}
+
+    \end{column}
+
+    \separatorcolumn
+  \end{columns}
 \end{frame}
 
 \end{document}
