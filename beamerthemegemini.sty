@@ -89,7 +89,7 @@
 % Heading
 \newcommand\heading[1]
 {%
-  \par\smallskip
+  \par\bigskismallskip
   {\usebeamerfont{heading}\usebeamercolor[fg]{heading}#1}\par\smallskip
 }
 
@@ -120,7 +120,7 @@
   \begin{beamercolorbox}{headline}
     \begin{columns}
       \begin{column}{\maxlogowidth}
-        \vskip5ex
+        \vskip12ex
         \ifdefined\insertlogoleft
           \vspace*{\fill}
           \hspace{10ex}
@@ -158,7 +158,7 @@
 % Block
 \setbeamertemplate{block begin}{
 \begin{beamercolorbox}[colsep*=0ex,dp=2ex,center]{block title}
-  \vskip-20pt
+  \vskip1pt
   \usebeamerfont{block title}\insertblocktitle
   \vskip-1.25ex
   \begin{beamercolorbox}[colsep=0.025ex]{block separator}\end{beamercolorbox}
@@ -216,7 +216,7 @@
       \ifbeamercolorempty[bg]{headline rule}{}{
         \begin{beamercolorbox}[wd=\paperwidth,colsep=0.25ex]{headline rule}\end{beamercolorbox}
       }
-      \vspace{1.5ex}
+      \vspace{3ex}
       \hspace{\sepwidth}
       \usebeamerfont{footline}
       \centering

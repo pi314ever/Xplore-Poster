@@ -13,7 +13,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{anyfontsize}
-\usepackage[size=custom,width=120,height=80,scale=1.0]{beamerposter}
+\usepackage[size=custom,width=120,height=90,scale=1.0]{beamerposter}
 \usetheme{gemini}
 % \usecolortheme{uchicago}
 \usecolortheme{stanford}
@@ -182,7 +182,7 @@
         \vspace{-1cm}
 
         \begin{figure}
-          \includegraphics[width=0.90\columnwidth]{images/point_map_diagram.png}
+          \includegraphics[width=\columnwidth]{images/point_map_diagram.png}
           \caption{Block diagram of image distortion pipeline}
           \label{fig:pipeline}
         \end{figure}
@@ -210,8 +210,8 @@
         %   \caption{Stanford Main Quad and checkerboard images used for benchmarking distortions}
         % \end{figure}
         \begin{figure}
-          \includegraphics[width=0.45\columnwidth]{images/combined_large_error_heatmap.png}
-          \includegraphics[width=0.45\columnwidth]{images/combined_small_error_heatmap.png}
+          \includegraphics[width=0.48\columnwidth]{images/combined_large_error_heatmap.png}
+          \includegraphics[width=0.48\columnwidth]{images/combined_small_error_heatmap.png}
           \caption{Heatmaps of error between ground truth and PMNN undistorted coordinates for large (left) and small (right) models}
         \end{figure}
       \end{block}
