@@ -1,16 +1,9 @@
-# Poster for
+# Poster for ICME Xpo 2023
 
-[Poster](main.pdf)
+**Poster**: [here](ICME_DHuang.pdf)
+**Project Repo**: [pi314ever/mathworks-physical-sensor-model](https://github.com/pi314ever/mathworks-physical-sensor-model)
 
-## 4 Available Colors
+## Template
 
-There are four available colors (demos under `demos/`): Palo Alto Green, Cardinal Red, White and Cool Gray. To change the color, go to `beamerthemestanford.sty` and change the `headline` color by (un)commenting the [relevant lines](https://github.com/RylanSchaeffer/Stanford-LaTeX-Poster-Template/blob/master/beamercolorthemestanford.sty#L44-L47):
+Poster template from [RyanSchaeffer/Stanford-LaTeX-Poster-Template](https://github.com/RylanSchaeffer/Stanford-LaTeX-Poster-Template)
 
-- White Text, Palo Alto Green Banner: `\setbeamercolor{headline}{bg=paloaltogreen,fg=white}`
-- Cardinal Red Text, White Banner: `\setbeamercolor{headline}{bg=white,fg=cardinalred}`
-- White Text, Cardinal Red Banner: `\setbeamercolor{headline}{bg=cardinalred,fg=white}`
-- White Text, Cool Gray Banner: `\setbeamercolor{headline}{bg=coolgray,fg=white}`
-
-## Contributions
-
-Contributions are more than welcome! If you have a way to improve this poster, please pay it forward by opening a pull request and I'll add your improvement(s) :)
